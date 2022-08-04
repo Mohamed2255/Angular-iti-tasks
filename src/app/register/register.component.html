@@ -1,0 +1,67 @@
+<!-- <div class="container">
+    <form #userform="ngForm">
+      
+         {{usermodel|json}} 
+        <div class="form-group mb-2">
+          <label  class="form-label">User Name</label>
+          <input required [class.is-invalid]="name.invalid && name.touched" pattern="^[A-Za-z]*$" [(ngModel)]="usermodel.name" type="text" name="#txtName" #name="ngModel" class="form-control"> 
+          <div *ngIf="name.errors && name.touched">
+          <small class="text-danger" *ngIf="name.errors['required']">Name Must Be Required</small> 
+          <small class="text-danger" *ngIf="name.errors['pattern']">Name Must Be only capital and small characters.</small> 
+        </div>
+      </div>
+        <div class="form-group mb-2">
+            <label  class="form-label">Password</label>
+            <input required [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="usermodel.password" type="password" name="#txtPassword" #password="ngModel"class="form-control">  
+            <small class="text-danger" *ngIf="password.invalid && password.touched">Password Must Be Required</small> 
+          </div>
+          <div class="form-group mb-2">
+            <label  class="form-label">Confirm Password</label>
+            <input required [(ngModel)]="usermodel.confirmpassword" [class.is-invalid]="confirmpassword.invalid && confirmpassword.touched" type="password" name="#txtConfirmPassword" #confirmpassword="ngModel" class="form-control">  
+            <small class="text-danger" *ngIf="confirmpassword.invalid && confirmpassword.touched">Confirm Must Be Required</small> 
+          </div>
+          <div class="form-group mb-2">
+            <label  class="form-label">Select Social</label> : 
+            <select required   [(ngModel)]="usermodel.social" name="#txtSelect" #social="ngModel" class="custom-select">
+                <option *ngFor="let s of socail">
+                    {{s}}
+                </option>
+            </select>
+          </div>
+          
+        <button type="submit" class="btn btn-success" [disabled]="userform.form.invalid">Register</button>
+      </form>
+</div> -->
+<!--Reactive Form-->
+ <div class="container">
+    <form [formGroup]="registerationForm">
+        <div class="form-group mb-2">
+          <label  class="form-label">User Name</label>
+          <input type="text" [class.is-invalid]="UserName?.invalid &&UserName?.touched" formControlName="userName" class="form-control">
+          <div *ngIf="UserName?.errors &&UserName?.touched">
+            <small class="text-danger" *ngIf="UserName?.errors?.['required']">User Name is required</small>
+            <small class="text-danger" *ngIf="UserName?.errors?.['pattern']">User Name Must Be only capital and small characters. </small>
+            
+        </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" formControlName="password" class="form-control">
+      </div>
+      <div class="form-group">
+          <label>Confirm Password</label>
+          <input [class.is-invalid]="registerationForm.errors?.['misMatch']" type="password" formControlName="confirmPassword" class="form-control">
+          <small *ngIf="registerationForm.errors?.['misMatch']" class="text-danger">Passwords dont match</small>
+      </div>
+          <div class="form-group mb-2">
+            <label  class="form-label">Select Social</label> : 
+            <select formControlName="socail"   class="custom-select">
+                <option *ngFor="let s of socail">
+                    {{s}}
+                </option>
+            </select>
+          </div>
+          
+        <button type="submit" class="btn btn-success" [disabled]="registerationForm.invalid">Register</button>
+      </form>
+</div> 

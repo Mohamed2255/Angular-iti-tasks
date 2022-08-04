@@ -1,0 +1,69 @@
+<div class="container">
+<h1>{{Storename}}</h1>
+<img src="assets/{{StoreLogo}}" width="200" height="200" >
+<h3 *ngIf="Discount=='No Discount'?false:true">We offer an explicit discount of: {{Discount}}</h3>
+<br>
+
+
+    <select >
+        <option *ngFor="let item of CategoryList">{{item.Name}}</option>
+        </select>
+        <br>
+        <br>
+
+        <input [(ngModel)]="ClientName" type="text" #txtInput />
+
+
+        {{ClientName}}
+        
+        <!-- <button (click)="hide()">Buy</button><br> -->
+        <button (click)="renderValues()">DisplayData</button>      
+        <table *ngIf="(ProductList.length>0)" class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of ProductList">
+                <td>{{p.ID}}</td>
+                <td>{{p.Name}}</td>
+                <td>{{p.Quantity}}</td>
+                <td>{{p.Price}}</td>
+                <td><img src="assets/{{p.Img}}" width="100" height="100" ></td>
+              </tr>
+            </tbody>
+          </table>
+    
+       <br>
+       <br>
+
+    
+     <!-- <div *ngIf="IsPurshased==false">
+        <h4 >Thanks for purchasing from our Store:  {{ClientName}}</h4>
+  
+    </div>
+     -->
+ 
+<button (click)="withdis()" class="btn btn-info m-3">Products with discount</button> 
+<button  (click)="withoutdis()" class="btn btn-danger m-3">Products without discount</button>
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</div>
